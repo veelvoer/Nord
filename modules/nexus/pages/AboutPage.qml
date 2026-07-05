@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Io
 import Caelestia
 import Caelestia.Config
@@ -61,16 +62,18 @@ PageBase {
                 width: parent.width - Tokens.padding.largeIncreased * 2
                 spacing: Tokens.spacing.small
 
-                AnimatedLogo {
+                Image {
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.preferredWidth: implicitWidth
-                    Layout.preferredHeight: implicitHeight
+                    Layout.preferredWidth: 128
+                    Layout.preferredHeight: 128
+                    source: Qt.resolvedUrl(`${Quickshell.shellDir}/assets/nordos-logo.svg`)
+                    fillMode: Image.PreserveAspectFit
                 }
 
                 StyledText {
                     Layout.alignment: Qt.AlignHCenter
                     Layout.topMargin: Tokens.spacing.small
-                    text: "Caelestia"
+                    text: "Nord"
                     font: Tokens.font.headline.builders.large.width(110).build()
                 }
 

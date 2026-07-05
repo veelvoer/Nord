@@ -16,28 +16,28 @@ in {
   ];
   options = with lib; {
     programs.caelestia = {
-      enable = mkEnableOption "Enable Caelestia shell";
+      enable = mkEnableOption "Enable Nord shell";
       package = mkOption {
         type = types.package;
         default = shell-default;
-        description = "The package of Caelestia shell";
+        description = "The package of Nord shell";
       };
       systemd = {
         enable = mkOption {
           type = types.bool;
           default = true;
-          description = "Enable the systemd service for Caelestia shell";
+          description = "Enable the systemd service for Nord shell";
         };
         target = mkOption {
           type = types.str;
           description = ''
-            The systemd target that will automatically start the Caelestia shell.
+            The systemd target that will automatically start the Nord shell.
           '';
           default = config.wayland.systemd.target;
         };
         environment = mkOption {
           type = types.listOf types.str;
-          description = "Extra Environment variables to pass to the Caelestia shell systemd service.";
+          description = "Extra Environment variables to pass to the Nord shell systemd service.";
           default = [];
           example = [
             "QT_QPA_PLATFORMTHEME=gtk3"
@@ -47,29 +47,29 @@ in {
       settings = mkOption {
         type = types.attrsOf types.anything;
         default = {};
-        description = "Caelestia shell settings";
+        description = "Nord shell settings";
       };
       extraConfig = mkOption {
         type = types.str;
         default = "";
-        description = "Caelestia shell extra configs written to shell.json";
+        description = "Nord shell extra configs written to shell.json";
       };
       cli = {
-        enable = mkEnableOption "Enable Caelestia CLI";
+        enable = mkEnableOption "Enable Nord CLI";
         package = mkOption {
           type = types.package;
           default = cli-default;
-          description = "The package of Caelestia CLI"; # Doesn't override the shell's CLI, only change from home.packages
+          description = "The package of Nord CLI"; # Doesn't override the shell's CLI, only change from home.packages
         };
         settings = mkOption {
           type = types.attrsOf types.anything;
           default = {};
-          description = "Caelestia CLI settings";
+          description = "Nord CLI settings";
         };
         extraConfig = mkOption {
           type = types.str;
           default = "";
-          description = "Caelestia CLI extra configs written to cli.json";
+          description = "Nord CLI extra configs written to cli.json";
         };
       };
     };
@@ -82,7 +82,7 @@ in {
     lib.mkIf cfg.enable {
       systemd.user.services.caelestia = lib.mkIf cfg.systemd.enable {
         Unit = {
-          Description = "Caelestia Shell Service";
+          Description = "Nord Shell Service";
           After = [cfg.systemd.target];
           PartOf = [cfg.systemd.target];
           X-Restart-Triggers = lib.mkIf (cfg.settings != {}) [

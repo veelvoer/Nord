@@ -13,20 +13,20 @@ StyledRect {
     readonly property int padding: Config.bar.clock.background ? Tokens.padding.medium : Tokens.padding.extraSmall
     readonly property var font: Tokens.font.body.builders.small.scale(1.1)
 
-    implicitWidth: Tokens.sizes.bar.innerWidth
-    implicitHeight: layout.implicitHeight + root.padding * 2
+    implicitHeight: Tokens.sizes.bar.innerWidth
+    implicitWidth: layout.implicitWidth + root.padding * 2
 
     color: Qt.alpha(Colours.tPalette.m3surfaceContainer, Config.bar.clock.background ? Colours.tPalette.m3surfaceContainer.a : 0)
     radius: Tokens.rounding.full
 
-    ColumnLayout {
+    RowLayout {
         id: layout
 
         anchors.centerIn: parent
         spacing: Tokens.spacing.extraSmall
 
         Loader {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             asynchronous: true
             active: Config.bar.clock.showIcon
             visible: active
@@ -38,42 +38,42 @@ StyledRect {
         }
 
         Loader {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             asynchronous: true
             active: Config.bar.clock.showDate
             visible: active
 
-            sourceComponent: ColumnLayout {
+            sourceComponent: RowLayout {
                 spacing: layout.spacing - 4
 
                 StyledText {
-                    Layout.alignment: Qt.AlignHCenter
+                    Layout.alignment: Qt.AlignVCenter
                     text: Time.format("ddd")
                     font: Tokens.font.body.builders.small.scale(0.9).build()
                     color: root.colour
                 }
 
                 StyledText {
-                    Layout.alignment: Qt.AlignHCenter
+                    Layout.alignment: Qt.AlignVCenter
                     text: Time.format("d")
                     font: root.font.scale(1.1).build()
                     color: root.colour
                 }
 
                 StyledRect {
-                    Layout.fillWidth: true
-                    Layout.leftMargin: -Tokens.padding.extraSmall
-                    Layout.rightMargin: -Tokens.padding.extraSmall
-                    Layout.topMargin: 4
-                    Layout.bottomMargin: Tokens.padding.extraSmall / 2
-                    implicitHeight: 1
+                    Layout.fillHeight: true
+                    Layout.topMargin: -Tokens.padding.extraSmall
+                    Layout.bottomMargin: -Tokens.padding.extraSmall
+                    Layout.leftMargin: 4
+                    Layout.rightMargin: Tokens.padding.extraSmall / 2
+                    implicitWidth: 1
                     color: Colours.palette.m3outlineVariant
                 }
             }
         }
 
         StyledText {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             text: Time.hourStr
             font: {
                 const scale = text === "11" ? 1.15 : Math.min(1.05, Math.max(hourMetrics.width, minMetrics.width) / hourMetrics.width);
@@ -90,8 +90,14 @@ StyledRect {
         }
 
         StyledText {
-            Layout.topMargin: -parent.spacing - 4
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
+            text: ":"
+            font: root.font.build()
+            color: root.colour
+        }
+
+        StyledText {
+            Layout.alignment: Qt.AlignVCenter
             text: Time.minuteStr
             font: {
                 const scale = text === "11" ? 1.15 : Math.min(1.05, Math.max(hourMetrics.width, minMetrics.width) / minMetrics.width);
@@ -108,8 +114,7 @@ StyledRect {
         }
 
         Loader {
-            Layout.topMargin: -parent.spacing - 4
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignVCenter
             asynchronous: true
             active: GlobalConfig.services.useTwelveHourClock
             visible: active

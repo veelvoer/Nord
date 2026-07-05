@@ -84,6 +84,14 @@ QtObject {
         Component {
             PlaceholderComp {}
         },
+        Component {
+            // Shortcuts
+            StackPage {
+                Component {
+                    ShortcutsPage {}
+                }
+            }
+        },
 
         // Shell
         Component {

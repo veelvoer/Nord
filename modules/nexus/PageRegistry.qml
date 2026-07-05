@@ -55,6 +55,12 @@ QtObject {
             description: qsTr("Manage plugins"),
             category: "system"
         },
+        {
+            label: qsTr("Shortcuts"),
+            icon: "keyboard",
+            description: qsTr("Keybindings and shortcuts"),
+            category: "system"
+        },
 
         // Shell
         {
