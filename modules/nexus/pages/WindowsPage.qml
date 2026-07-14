@@ -4,6 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 import Nord
 import Nord.Config
+import Quickshell
 import Quickshell.Io
 import qs.components
 import qs.components.controls
@@ -24,8 +25,28 @@ PageBase {
     property int inBottom: 0
     property int inRight: 0
     property int borderW: 1
+    property int barThickness: 40
+
+    readonly property string tokensPath: `${Paths.config}/nord/shell-tokens.json`
 
     data: [
+        Process {
+            id: readTokensProcess
+            property string buffer
+            command: ["cat", root.tokensPath]
+            running: true
+            stdout: SplitParser { onRead: data => readTokensProcess.buffer += data }
+            onRunningChanged: {
+                if (!running) {
+                    try {
+                        const d = JSON.parse(readTokensProcess.buffer);
+                        if (d.sizes && d.sizes.bar && d.sizes.bar.innerWidth !== undefined)
+                            root.barThickness = d.sizes.bar.innerWidth;
+                    } catch (e) {}
+                    readTokensProcess.buffer = "";
+                }
+            }
+        },
         Process {
             id: readOutProcess
             property string buffer
@@ -102,6 +123,12 @@ PageBase {
         Hypr.extras.message(`[[BATCH]]eval hl.config({ general = { border_size = ${borderW} } })`);
     }
 
+    function applyBarThickness(): void {
+        const dir = `${Paths.config}/nord`;
+        const content = JSON.stringify({sizes: {bar: {innerWidth: barThickness}}}, null, 2);
+        Quickshell.execDetached(["sh", "-c", `mkdir -p "${dir}" && echo '${content}' > "${root.tokensPath}"`]);
+    }
+
     ColumnLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         width: root.cappedWidth
@@ -109,8 +136,23 @@ PageBase {
 
         SectionHeader {
             first: true
+            text: qsTr("Bar")
+            Layout.bottomMargin: Tokens.spacing.extraSmall / 2
+        }
+
+        StepperRow {
+            first: true
+            last: true
+            label: qsTr("Thickness")
+            value: root.barThickness
+            from: 24; to: 80; stepSize: 1
+            onMoved: v => { root.barThickness = v; root.applyBarThickness(); }
+        }
+
+        SectionHeader {
             text: qsTr("Outer gaps")
             Layout.bottomMargin: Tokens.spacing.extraSmall / 2
+            Layout.topMargin: Tokens.spacing.small
         }
 
         StepperRow {
