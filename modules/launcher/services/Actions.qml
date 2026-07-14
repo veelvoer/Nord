@@ -3,8 +3,8 @@ pragma Singleton
 import ".."
 import QtQuick
 import Quickshell
-import Caelestia.Config
-import Caelestia.Services
+import Nord.Config
+import Nord.Services
 import qs.services
 import qs.utils
 

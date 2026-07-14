@@ -1,13 +1,13 @@
 import Quickshell
 import Quickshell.Wayland
-import Caelestia.Config
+import Nord.Config
 
 // qmllint disable uncreatable-type
 PanelWindow {
     // qmllint enable uncreatable-type
     required property string name
 
-    WlrLayershell.namespace: `caelestia-${name}`
+    WlrLayershell.namespace: `nord-${name}`
     color: "transparent"
 
     contentItem.Config.screen: screen.name

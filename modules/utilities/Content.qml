@@ -1,7 +1,7 @@
 import "cards"
 import QtQuick
 import QtQuick.Layouts
-import Caelestia.Config
+import Nord.Config
 import qs.components
 import qs.modules.bar.popouts as BarPopouts
 

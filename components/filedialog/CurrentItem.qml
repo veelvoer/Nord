@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Shapes
-import Caelestia.Config
+import Nord.Config
 import qs.components
 import qs.services
 

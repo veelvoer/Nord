@@ -1,8 +1,8 @@
 {
   "nodes": {
-    "caelestia-cli": {
+    "nord-cli": {
       "inputs": {
-        "caelestia-shell": [],
+        "nord-shell": [],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -10,13 +10,13 @@
       "locked": {
         "lastModified": 1783136658,
         "narHash": "sha256-1t4frpWtweMzxmsvrlceEvN/OMCdsAvENTEsPf5Hf9w=",
-        "owner": "caelestia-dots",
+        "owner": "nord-dots",
         "repo": "cli",
         "rev": "7c4f5372eb1ad897e17a36416c57234ced5a5b79",
         "type": "github"
       },
       "original": {
-        "owner": "caelestia-dots",
+        "owner": "nord-dots",
         "repo": "cli",
         "type": "github"
       }
@@ -76,7 +76,7 @@
     },
     "root": {
       "inputs": {
-        "caelestia-cli": "caelestia-cli",
+        "nord-cli": "nord-cli",
         "m3shapes": "m3shapes",
         "nixpkgs": "nixpkgs",
         "quickshell": "quickshell"

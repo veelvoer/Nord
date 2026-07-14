@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import Caelestia.Components
-import Caelestia.Config
+import Nord.Components
+import Nord.Config
 import qs.components
 import qs.components.controls
 import qs.components.images

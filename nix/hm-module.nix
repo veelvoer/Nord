@@ -6,16 +6,16 @@ self: {
 }: let
   inherit (pkgs.stdenv.hostPlatform) system;
 
-  cli-default = self.inputs.caelestia-cli.packages.${system}.default;
+  cli-default = self.inputs.nord-cli.packages.${system}.default;
   shell-default = self.packages.${system}.with-cli;
 
-  cfg = config.programs.caelestia;
+  cfg = config.programs.nord;
 in {
   imports = [
-    (lib.mkRenamedOptionModule ["programs" "caelestia" "environment"] ["programs" "caelestia" "systemd" "environment"])
+    (lib.mkRenamedOptionModule ["programs" "nord" "environment"] ["programs" "nord" "systemd" "environment"])
   ];
   options = with lib; {
-    programs.caelestia = {
+    programs.nord = {
       enable = mkEnableOption "Enable Nord shell";
       package = mkOption {
         type = types.package;
@@ -80,19 +80,19 @@ in {
     shell = cfg.package;
   in
     lib.mkIf cfg.enable {
-      systemd.user.services.caelestia = lib.mkIf cfg.systemd.enable {
+      systemd.user.services.nord = lib.mkIf cfg.systemd.enable {
         Unit = {
           Description = "Nord Shell Service";
           After = [cfg.systemd.target];
           PartOf = [cfg.systemd.target];
           X-Restart-Triggers = lib.mkIf (cfg.settings != {}) [
-            "${config.xdg.configFile."caelestia/shell.json".source}"
+            "${config.xdg.configFile."nord/shell.json".source}"
           ];
         };
 
         Service = {
           Type = "exec";
-          ExecStart = "${shell}/bin/caelestia-shell";
+          ExecStart = "${shell}/bin/nord-shell";
           Restart = "on-failure";
           RestartSec = "5s";
           TimeoutStopSec = "5s";
@@ -123,10 +123,10 @@ in {
           ];
         shouldGenerate = c: c.extraConfig != "" || c.settings != {};
       in {
-        "caelestia/shell.json" = lib.mkIf (shouldGenerate cfg) {
+        "nord/shell.json" = lib.mkIf (shouldGenerate cfg) {
           text = mkConfig cfg;
         };
-        "caelestia/cli.json" = lib.mkIf (shouldGenerate cfg.cli) {
+        "nord/cli.json" = lib.mkIf (shouldGenerate cfg.cli) {
           text = mkConfig cfg.cli;
         };
       };

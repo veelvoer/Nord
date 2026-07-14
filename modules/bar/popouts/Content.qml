@@ -4,7 +4,7 @@ import "./kblayout"
 import QtQuick
 import Quickshell
 import Quickshell.Services.SystemTray
-import Caelestia.Config
+import Nord.Config
 import qs.components
 
 Item {

@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Caelestia.Config
+import Nord.Config
 import qs.components
 import qs.components.controls
 import qs.services
@@ -339,7 +339,7 @@ PageBase {
             id: luaProcess
 
             running: true
-            command: ["python3", "/home/warre/.config/quickshell/caelestia/scripts/parse_binds.py", "/home/warre/.config/hypr/hyprland.lua"]
+            command: ["python3", "/home/warre/.config/quickshell/nord/scripts/parse_binds.py", "/home/warre/.config/hypr/hyprland.lua"]
             stdout: StdioCollector {
                 onStreamFinished: {
                     try {

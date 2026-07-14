@@ -2,7 +2,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import M3Shapes
-import Caelestia.Config
+import Nord.Config
 import qs.components
 import qs.components.effects
 import qs.components.filedialog
@@ -145,7 +145,7 @@ Item {
 
         Loader {
             anchors.centerIn: parent
-            sourceComponent: SysInfo.isDefaultLogo ? caelestiaLogo : osLogo
+            sourceComponent: SysInfo.isDefaultLogo ? nordLogo : osLogo
         }
     }
 
@@ -162,7 +162,7 @@ Item {
     }
 
     Component {
-        id: caelestiaLogo
+        id: nordLogo
 
         Logo {
             implicitWidth: Tokens.sizes.dashboard.logoSize

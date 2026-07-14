@@ -2,7 +2,7 @@
 
 <div align=center>
 
-A customized [Quickshell](https://quickshell.outfoxxed.me) desktop shell for [Hyprland](https://hyprland.org), based on [Caelestia](https://github.com/caelestia-dots/shell).
+A customized [Quickshell](https://quickshell.outfoxxed.me) desktop shell for [Hyprland](https://hyprland.org).
 
 </div>
 
@@ -35,9 +35,9 @@ Build dependencies:
 
 ```sh
 cd $XDG_CONFIG_HOME/quickshell
-git clone https://github.com/veelvoer/Nord.git caelestia
+git clone https://github.com/veelvoer/Nord.git nord
 
-cd caelestia
+cd nord
 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/
 cmake --build build
 sudo cmake --install build
@@ -48,12 +48,12 @@ sudo cmake --install build
 Start the shell with:
 
 ```sh
-qs -c caelestia
+qs -c nord
 ```
 
 ## Configuration
 
-All configuration options are in `~/.config/caelestia/shell.json`. Create this file manually to customize the shell. See the [original documentation](https://github.com/caelestia-dots/shell#configuring) for all available options.
+All configuration options are in `~/.config/nord/shell.json`. Create this file manually to customize the shell. See the [Caelestia documentation](https://github.com/caelestia-dots/shell#configuring) for all available options.
 
 ### Shortcuts
 
@@ -61,7 +61,7 @@ Keybinds are configured via Hyprland [global shortcuts](https://wiki.hyprland.or
 
 ### Wallpapers
 
-Wallpapers are read from `~/Pictures/Wallpapers` by default. Change the path in `~/.config/caelestia/shell.json` under `paths.wallpaperDir`.
+Wallpapers are read from `~/Pictures/Wallpapers` by default. Change the path in `~/.config/nord/shell.json` under `paths.wallpaperDir`.
 
 ### Profile Picture
 

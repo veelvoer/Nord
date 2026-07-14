@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Templates
-import Caelestia.Config
-import Caelestia.Internal
+import Nord.Config
+import Nord.Internal
 import qs.components
 import qs.services
 

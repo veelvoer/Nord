@@ -1,5 +1,5 @@
 import QtQuick
-import Caelestia.Config
+import Nord.Config
 
 NumberAnimation {
     enum Type {

@@ -27,7 +27,7 @@
   cmake,
   ninja,
   pkg-config,
-  caelestia-cli,
+  nord-cli,
   m3shapes,
   debug ? false,
   withCli ? false,
@@ -49,7 +49,7 @@
       hyprland
     ]
     ++ extraRuntimeDeps
-    ++ lib.optional withCli caelestia-cli;
+    ++ lib.optional withCli nord-cli;
 
   fontconfig = makeFontsConf {
     fontDirectories = [material-symbols rubik nerd-fonts.caskaydia-cove];
@@ -157,8 +157,8 @@ in
       makeWrapper ${quickshell}/bin/qs $out/bin/nord-shell \
       	--prefix PATH : "${lib.makeBinPath runtimeDeps}" \
       	--set FONTCONFIG_FILE "${fontconfig}" \
-      	--set CAELESTIA_LIB_DIR ${extras}/lib \
-        --set CAELESTIA_XKB_RULES_PATH ${xkeyboard-config}/share/xkeyboard-config-2/rules/base.lst \
+      	--set NORD_LIB_DIR ${extras}/lib \
+        --set NORD_XKB_RULES_PATH ${xkeyboard-config}/share/xkeyboard-config-2/rules/base.lst \
       	--add-flags "-p $out/share/nord-shell"
 
       mkdir -p $out/lib
@@ -171,7 +171,7 @@ in
 
     meta = {
       description = "A very segsy desktop shell";
-      homepage = "https://github.com/caelestia-dots/shell";
+      homepage = "https://github.com/nord-dots/shell";
       license = lib.licenses.gpl3Only;
       mainProgram = "nord-shell";
     };
