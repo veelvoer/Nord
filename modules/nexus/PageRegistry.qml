@@ -13,6 +13,18 @@ QtObject {
             description: qsTr("Wallpaper, fonts, colours"),
             category: "appearance"
         },
+        {
+            label: qsTr("Themes"),
+            icon: "color_lens",
+            description: qsTr("Select colour theme"),
+            category: "appearance"
+        },
+        {
+            label: qsTr("Windows"),
+            icon: "window",
+            description: qsTr("Gaps, borders, window spacing"),
+            category: "appearance"
+        },
 
         // Connectivity
         // TODO

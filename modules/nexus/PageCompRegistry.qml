@@ -38,6 +38,22 @@ QtObject {
                 }
             }
         },
+        Component {
+            // Themes
+            StackPage {
+                Component {
+                    ThemesPage {}
+                }
+            }
+        },
+        Component {
+            // Windows
+            StackPage {
+                Component {
+                    WindowsPage {}
+                }
+            }
+        },
 
         // Connectivity
         Component {

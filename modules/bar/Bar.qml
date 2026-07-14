@@ -32,7 +32,6 @@ RowLayout {
 
     function checkPopout(x: real): void {
         const ch = childAt(x, height / 2) as EntryWrapper;
-        console.log(`[checkPopout] mouseX=${x} barHeight=${height} childId=${ch?.entryId} ch.x=${ch?.x}`);
 
         if (ch?.entryId !== "tray")
             closeTray();
@@ -49,11 +48,9 @@ RowLayout {
             const items = (ch.item as StatusIcons).items;
             const iconX = mapToItem(items, x, 0).x;
             const icon = items.childAt(iconX, items.height / 2);
-            console.log(`[checkPopout] statusIcons: iconX=${iconX} icon=${icon?.name} ch.x=${ch.x}`);
             if (icon) {
                 popouts.currentName = icon.name;
                 const center = ch.x + Tokens.padding.medium + icon.x + icon.implicitWidth / 2;
-                console.log(`[checkPopout] statusIcons: center=${center} icon.x=${icon.x} icon.w=${icon.implicitWidth} padding=${Tokens.padding.medium}`);
                 popouts.currentCenter = center;
                 popouts.hasCurrent = true;
             }
@@ -65,7 +62,6 @@ RowLayout {
                 if (trayItem) {
                     popouts.currentName = `traymenu${index}`;
                     const center = ch.x + tray.padding + trayItem.x + trayItem.implicitWidth / 2;
-                    console.log(`[checkPopout] tray: center=${center}`);
                     popouts.currentCenter = center;
                     popouts.hasCurrent = true;
                 } else {
@@ -75,12 +71,6 @@ RowLayout {
                 popouts.hasCurrent = false;
                 tray.expanded = true;
             }
-        } else if (id === "activeWindow" && Config.bar.popouts.activeWindow && Config.bar.activeWindow.showOnHover) {
-            popouts.currentName = id.toLowerCase();
-            const center = ch.x + (ch.item as Item).implicitWidth / 2;
-            console.log(`[checkPopout] activeWindow: center=${center}`);
-            popouts.currentCenter = center;
-            popouts.hasCurrent = true;
         }
     }
 
